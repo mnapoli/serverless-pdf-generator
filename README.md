@@ -1,6 +1,6 @@
 PDF generator built as a serverless application.
 
-Runs on AWS Lambda, built with Serverless and [Lift](https://github.com/getlift/lift).
+Runs on AWS Lambda, built with the Serverless Framework and [Lift](https://github.com/getlift/lift).
 
 ## Why?
 
