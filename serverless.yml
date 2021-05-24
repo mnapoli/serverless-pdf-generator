@@ -1,0 +1,31 @@
+service: pdf-generator
+
+provider:
+    name: aws
+
+plugins:
+    - serverless-lift # https://github.com/getlift/lift
+
+# Use the Lift "storage" component to easily deploy a S3 bucket
+storage:
+    pdf:
+
+functions:
+    generate-pdf:
+        handler: handler.index
+        timeout: 20
+        memorySize: 2048
+        reservedConcurrency: 2
+        runtime: nodejs10.x
+        events:
+            - httpApi: 'GET /pdf'
+        environment:
+            STORAGE_BUCKET: ${storage:pdf.bucketName}
+            # For the demo, only pages from bref.sh can be exported to PDF
+            # Feel free to change this in your application
+            DOMAIN_WHITELIST: 'bref.sh'
+
+package:
+    patterns:
+        - '!serverless.yml'
+        - '!README.md'
