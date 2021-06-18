@@ -7,8 +7,9 @@ plugins:
     - serverless-lift # https://github.com/getlift/lift
 
 # Use the Lift "storage" component to easily deploy a S3 bucket
-storage:
+constructs:
     pdf:
+        type: storage
 
 functions:
     generate-pdf:
@@ -20,7 +21,7 @@ functions:
         events:
             - httpApi: 'GET /pdf'
         environment:
-            STORAGE_BUCKET: ${storage:pdf.bucketName}
+            STORAGE_BUCKET: ${construct:pdf.bucketName}
             # For the demo, only pages from bref.sh can be exported to PDF
             # Feel free to change this in your application
             DOMAIN_WHITELIST: 'bref.sh'

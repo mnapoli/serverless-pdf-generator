@@ -4,6 +4,6 @@
         "puppeteer-core": "^2.0.0"
     },
     "devDependencies": {
-        "serverless-lift": "^0.9.0"
+        "serverless-lift": "^1.0"
     }
 }
